@@ -71,7 +71,7 @@ Para verificar a *versão mais recente:* <https://h2database.com/html/download.h
 
 ## Para verificar se esta funcinando <http://localhost:8080/h2-console> 
 
-## Signicado dos termos
+## Significado dos termos
 
   O `pom.xml` é uma representação declarativa do seu projeto
 
