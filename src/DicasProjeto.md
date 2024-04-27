@@ -1,3 +1,16 @@
+
+`@component` registra a classe como componente do Spring
+
+`@repositor`e`@service` registros especializados
+
+ex:
+```
+@Service
+public class UserService {
+```
+
+
+
 ## Project created
 **Checklist:**
 *  Spring Initializr

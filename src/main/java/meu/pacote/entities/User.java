@@ -11,7 +11,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L; // serialVersionUID é um identificador único para cada classe serializável
 
 	@Id //chave primaria da tabela do bando de dados
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //cria um numero sequencial para a tabela do banco de dados
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //cria um numero sequencial do ID para a tabela do banco de dados
 	private Long id;
 	private String nome;
 	private String email;
@@ -75,7 +75,7 @@ public class User implements Serializable {
 		if(this == o) return true;
 		if(o == null || getClass() != o.getClass()) return false;
 
-		User user = (User) o;
+		User user = (User) o; // converte o objeto o em User
 		return id.equals(user.id);
 	}
 
