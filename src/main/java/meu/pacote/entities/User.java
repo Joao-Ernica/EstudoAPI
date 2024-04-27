@@ -1,9 +1,12 @@
 package meu.pacote.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // importa o jakarta.persistence, declara que essa classe é uma entidade
 @Table(name = "tb_user") // indica que a entidade deve ser mapeada para "tb_user", pois ja existe uma tabela "user" mno h2
@@ -17,6 +20,10 @@ public class User implements Serializable {
 	private String email;
 	private String telefone;
 	private String senha;
+
+
+	@OneToMany(mappedBy = "client")  // usado para definir "muitos para um" nesse caso, o client (Uzer) so tera um e recebera muitas "Orders"
+	private List<Order> order = new ArrayList<>();
 
 	public User(){
 
@@ -70,6 +77,11 @@ public class User implements Serializable {
 		this.senha = senha;
 	}
 
+	@JsonIgnore //para não entrar em loop, ja que o User chama o Order e o Order chama o User
+	public List<Order> getOrder() {
+		return order;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if(this == o) return true;
@@ -83,5 +95,6 @@ public class User implements Serializable {
 	public int hashCode() {
 		return id.hashCode();
 	}
+
 }
 

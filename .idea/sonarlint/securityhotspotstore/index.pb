@@ -273,3 +273,9 @@ b
 -src/main/java/meu/pacote/services/services.md,3\d\3d55216f104ecb7c961969c395e1564e01963405
 P
  src/main/java/funçõesPastas.md,3\9\39dc1144b0db1371bdd5efdbbee500770cd85a0b
+\
+,src/main/java/meu/pacote/entities/Order.java,8\a\8ae6d2a07090ac33aca66da5c24e562be12c0476
+j
+:src/main/java/meu/pacote/repositories/OrderRepository.java,5\3\5384885af1a8e57a28623b5ca49c43ae50b8224c
+c
+3src/main/java/meu/pacote/services/OrderService.java,7\b\7bc8acbeba1bf53ee8d02da56c231f2652d09294

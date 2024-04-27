@@ -18,8 +18,7 @@ public class UserService {
 		return repository.findAll(); //metodo para mostrar todos os usuarios
 	}
 
-	public User finById(Long id) { //recuperar um usuario pelo ID
-
+	public User findById(Long id) { //recuperar um usuario pelo ID
 		Optional<User> obj = repository.findById(id); //Optional, ela pode conter um valor presente (ou seja, o objeto que você está buscando) ou um valor ausente (que é representado por null
 		return obj.get();
 	}
