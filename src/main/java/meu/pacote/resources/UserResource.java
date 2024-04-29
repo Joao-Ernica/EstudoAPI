@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 // Significa que essa classe vai ser responsável por pegar as informações que vêm de uma solicitação da web
-@RequestMapping(value = "/users")
+@RequestMapping("Users")
 // nome da solicitaçao do web, quando for chamada essa solicitaçao vai vir para essa classe
 public class UserResource {
 
@@ -29,11 +29,10 @@ public class UserResource {
 		return ResponseEntity.ok().body(list); //  ResponseEntity.ok() retorna com sucesso a resposta, .body(u) retorna o corpo da resposta o usuario u
 	}
 
-	@GetMapping(value = "/{id}")// quando colocar /users/1 colocara a pessoa com id 1
-	public ResponseEntity<User> findById(@PathVariable Long id) {
+	@GetMapping("{id}")// quando colocar /users/1 colocara a pessoa com id 1
+	public User findById(@PathVariable Long id) {
 		try {
-			User obj = userService.findById(id);
-			return ResponseEntity.ok().body(obj);
+			return  userService.findById(id);
 		}catch (NoSuchElementException e){
 			return
 					null;
