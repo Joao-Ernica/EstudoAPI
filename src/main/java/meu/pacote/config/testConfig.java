@@ -4,6 +4,7 @@ package meu.pacote.config;
 import lombok.SneakyThrows;
 import meu.pacote.entities.Order;
 import meu.pacote.entities.User;
+import meu.pacote.entities.enums.OrderStatus;
 import meu.pacote.repositories.OrderRepository;
 import meu.pacote.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +46,10 @@ public class testConfig implements CommandLineRunner { // exeecutar quando o pro
 				.telefone("988888888")
 				.build();
 
-		var o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-		var o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), u2);
-		var o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), u1);
+
+		var o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAGO, u1);
+		var o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"),OrderStatus.ENTREGUE, u2);
+		var o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"),OrderStatus.AGUARDANDO_PAGAMENTO, u1);
 
 		userRepository.saveAll(Arrays.asList(u1,u2)); //percorre a lista e coloca os usuarios no banco de dados
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3));
