@@ -26,13 +26,13 @@ public class UserResource {
 	public ResponseEntity<List<User>> findALL() { //ResponseEntity<User> é um tipo especial do Spring que permite retornar dados junto com informações de status HTTP
 		// <User> uma classe que representa um usuário em seu sistema
 		List<User> list = userService.findALL();
-		return ResponseEntity.ok().body(list); //  ResponseEntity.ok() retorna com sucesso a resposta, .body(u) retorna o corpo da resposta o usuario u
+		return ResponseEntity.ok().body(list); // ResponseEntity.ok() retorna com sucesso a resposta, .body(u) retorna o corpo da resposta o usuario u
 	}
 
 	@GetMapping("{id}")// quando colocar /users/1 colocara a pessoa com id 1
 	public User findById(@PathVariable Long id) {
 		try {
-			return  userService.findById(id);
+			return userService.findById(id);
 		}catch (NoSuchElementException e){
 			return
 					null;

@@ -12,6 +12,8 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Data
 @Builder

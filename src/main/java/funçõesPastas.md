@@ -18,7 +18,7 @@ Os **controladores** lidam com as solicitações do usuário. **Eles usam os `se
 
 ## 5. Config
 
-A pasta `config` contém classes de configuração que definem beans e outras **configurações específicas da aplicação**, como configurações de banco de dados, segurança, etc.
+A pasta `config` contém classes de configuração que definem Beans e outras **configurações específicas da aplicação**, como configurações de banco de dados, segurança, etc.
 
 ## Fluxo de uma Solicitação
 

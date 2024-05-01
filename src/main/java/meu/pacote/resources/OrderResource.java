@@ -29,10 +29,9 @@ public class OrderResource {
 	}
 
 	@GetMapping("{id}")// quando colocar /Orders/1 colocara a pessoa com id 1
-	public ResponseEntity<Order> findById(@PathVariable Long id) {
+	public Order findById(@PathVariable Long id) {
 		try {
-			Order obj = OrderService.findById(id);
-			return ResponseEntity.ok().body(obj);
+			return OrderService.findById(id);
 		} catch (NoSuchElementException e) {
 			return
 					null;
