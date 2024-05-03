@@ -3,10 +3,7 @@ package meu.pacote.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,14 +14,15 @@ import java.util.List;
 @Data //combinação de varias anotações que são: @Getter @Setter @ToString @EqualsAndHashCode:
 @Builder //gera um padrão de construtor para sua classe.
 @Entity // importa o jakarta.persistence, declara que essa classe é uma entidade
-@Table(name = "tb_user")
-// indica que a entidade deve ser mapeada para "tb_user", pois ja existe uma tabela "user" mno h2
+@Table(name = "tb_user")// indica que a entidade deve ser mapeada para "tb_user", pois ja existe uma tabela "user" mno h2
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L; // serialVersionUID é um identificador único para cada classe serializável
 
 	@Id //chave primaria da tabela do bando de dados
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//cria um numero sequencial do ID para a tabela do banco de dados
+	@EqualsAndHashCode.Include
 	private Long id;
+
 	private String nome;
 	private String email;
 	private String telefone;
@@ -32,6 +30,7 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "client")
 	// usado para definir "muitos para um" nesse caso, o client (Uzer) so tera um e recebera muitas "Orders"
+	@Setter(AccessLevel.NONE)//para ter apenas get com o lombok
 	private List<Order> order = new ArrayList<>();
 
 	@JsonIgnore //para não entrar em loop, ja que o User chama o Order e o Order chama o User

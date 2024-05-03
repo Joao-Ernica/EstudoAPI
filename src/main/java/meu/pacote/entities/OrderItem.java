@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import meu.pacote.entities.pk.OrderItemPK;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 @NoArgsConstructor
 @Data
@@ -21,6 +20,7 @@ public class OrderItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId //usado no id quando se tem ManyToMany
+	@EqualsAndHashCode.Include
 	private OrderItemPK id = new OrderItemPK(); // intanciar a classe intermediaria (pk)
 
 	private Integer quantidade;

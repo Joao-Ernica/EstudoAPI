@@ -21,6 +21,7 @@ public class Order implements Serializable {
 
 	@Id //chave primaria da tabela do bando de dados
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//cria um numero sequencial do ID para a tabela do banco de dados
+	@EqualsAndHashCode.Include
 	private Long id;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")// configurar os formatos dos valores Json
@@ -33,7 +34,7 @@ public class Order implements Serializable {
 	@JoinColumn(name = "client_id")
 	private User client;
 
-	@Getter
+	@Setter(AccessLevel.NONE)
 	@OneToMany(mappedBy = "id.order") //porque no Orderitem ele so tem o atributo id que o id que tem o order
 	private final Set<OrderItem> items = new HashSet<>();
 
