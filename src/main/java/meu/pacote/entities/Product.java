@@ -19,6 +19,7 @@ public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
 	private Integer id;
 
 	private String nome;
@@ -26,7 +27,6 @@ public class Product implements Serializable {
 	private Double valor;
 	private String imgUrl;
 
-	@Getter
 	@ManyToMany //Relação muitos para muitos, ou seja, prudutos podem ter muitas categorias e vice versa
 	@Setter(AccessLevel.NONE)
 	@JoinTable(

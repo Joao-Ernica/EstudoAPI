@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import meu.pacote.entities.pk.OrderItemPK;
 
 import java.io.Serializable;
@@ -21,18 +19,20 @@ public class OrderItem implements Serializable {
 
 	@EmbeddedId //usado no id quando se tem ManyToMany
 	@EqualsAndHashCode.Include
+	@Getter(AccessLevel.NONE)
+	@Setter(AccessLevel.NONE)
 	private OrderItemPK id = new OrderItemPK(); // intanciar a classe intermediaria (pk)
 
-	private Integer quantidade;
+	private Integer quantity;
 
-	private Double preco;
+	private Double price;
 
-	public OrderItem(Order order, Product product, Integer quantidade, Double preco) {
+	public OrderItem(Order order, Product product, Integer quantity, Double price) {
 		super();
 		id.setOrder(order);
 		id.setProduct(product);
-		this.quantidade = quantidade;
-		this.preco = preco;
+		this.quantity = quantity;
+		this.price = price;
 	}
 
 	@JsonIgnore // nao entrar em loop infinito
@@ -51,4 +51,6 @@ public class OrderItem implements Serializable {
 	public void setProduct(Product product) {
 		id.setProduct(product);
 	}
+
+
 }
