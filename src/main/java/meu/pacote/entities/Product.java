@@ -12,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder
 @Table(name = "tb_producto")
 public class Product implements Serializable {

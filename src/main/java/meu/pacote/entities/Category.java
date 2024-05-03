@@ -12,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Builder
 @Table(name = "tb_category")
 public class Category implements Serializable {
@@ -21,6 +22,7 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Integer id;
+
 	private String nome;
 
 	@Setter(AccessLevel.NONE)//para ter apenas get com o lombok

@@ -13,9 +13,15 @@ public class UserService {
 
 <https://mmarcosab.medium.com/usando-anota%C3%A7%C3%B5es-do-lombok-em-java-com-springboot-ecbec69234a9>
 
+## Dicas:
+
+`@EqualsAndHashCode(onlyExplicitlyIncluded = true)` excluir todos **exceto o atributo que tenha** `@EqualsAndHashCode.Include`
+
 ### Anotações
 
 `@Getter e @Setter`: Essas anotações são usadas para gerar automaticamente os métodos getter e setter para os campos de uma classe.
+
+`@Getter(AccessLevel.NONE) e @Setter(AccessLevel.NONE)`: Não colocar Getter ou Setter nesse atributo (util com `@Data`)
 
 `@Data:` Combina @ToString, @EqualsAndHashCode, @Getter, @Setter e @RequiredArgsConstructor em uma única anotação.
 

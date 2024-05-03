@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor //gera um construtor sem argumentos para uma classe.
 @AllArgsConstructor // gera um construtor com todos os campos para uma classe
 @Data //combinação de varias anotações que são: @Getter @Setter @ToString @EqualsAndHashCode:
+@EqualsAndHashCode(onlyExplicitlyIncluded = true) //excluir todos que nao tenham
 @Builder //gera um padrão de construtor para sua classe.
 @Entity // importa o jakarta.persistence, declara que essa classe é uma entidade
 @Table(name = "tb_user")// indica que a entidade deve ser mapeada para "tb_user", pois ja existe uma tabela "user" mno h2
@@ -20,7 +21,7 @@ public class User implements Serializable {
 
 	@Id //chave primaria da tabela do bando de dados
 	@GeneratedValue(strategy = GenerationType.IDENTITY)//cria um numero sequencial do ID para a tabela do banco de dados
-	@EqualsAndHashCode.Include
+	@EqualsAndHashCode.Include // indica que somente esse atributo recebera @EqualsAndHashCode
 	private Long id;
 
 	private String nome;
