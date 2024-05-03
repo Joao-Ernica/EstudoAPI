@@ -2,15 +2,10 @@ package meu.pacote.config;
 
 
 import lombok.SneakyThrows;
-import meu.pacote.entities.Category;
-import meu.pacote.entities.Order;
-import meu.pacote.entities.Product;
-import meu.pacote.entities.User;
+
+import meu.pacote.entities.*;
 import meu.pacote.entities.enums.OrderStatus;
-import meu.pacote.repositories.CategoryRepository;
-import meu.pacote.repositories.OrderRepository;
-import meu.pacote.repositories.ProductRepository;
-import meu.pacote.repositories.UserRepository;
+import meu.pacote.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +30,9 @@ public class testConfig implements CommandLineRunner { // exeecutar quando o pro
 
 	@Autowired
 	private ProductRepository productoRepository;
+
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 
 	@Override
 	@SneakyThrows // ocultar exceções verificadas
@@ -63,6 +61,15 @@ public class testConfig implements CommandLineRunner { // exeecutar quando o pro
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 		productoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
+		p1.getCategories().add(cat2); //dentro das categorias do produto p1 esta a categoria cat2
+		p2.getCategories().add(cat1);
+		p2.getCategories().add(cat3);
+		p3.getCategories().add(cat3);
+		p4.getCategories().add(cat3);
+		p5.getCategories().add(cat2);
+
+		productoRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+
 		var u1 = User.builder()
 				.id(null)
 				.nome("maria")
@@ -86,6 +93,13 @@ public class testConfig implements CommandLineRunner { // exeecutar quando o pro
 
 		userRepository.saveAll(Arrays.asList(u1, u2)); //percorre a lista e coloca os usuarios no banco de dados
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getValor()); //o OrderItem 1 é do pedido 1, do produto 2 com o preço do produto 1
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getValor());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getValor());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getValor());
+
+		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 
 		//salvar os usuarios no banco de dados
 	}
