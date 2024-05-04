@@ -11,6 +11,9 @@ public class UserService {
 
 ## lombok
 
+**Oficial:**
+<https://projectlombok.org/features/>
+
 <https://mmarcosab.medium.com/usando-anota%C3%A7%C3%B5es-do-lombok-em-java-com-springboot-ecbec69234a9>
 
 ## Dicas:
@@ -24,8 +27,9 @@ public class UserService {
 `@Getter(AccessLevel.NONE) e @Setter(AccessLevel.NONE)`: Não colocar Getter ou Setter nesse atributo (util com `@Data`)
 
 `@Data:` Combina @ToString, @EqualsAndHashCode, @Getter, @Setter e @RequiredArgsConstructor em uma única anotação.
+se a classe **ja possui uma anotação de construtor** como `@NoArgsConstructor` ou `@AllArgsConstructor` **não ira gerar o construtor** `@RequiredArgsConstructor`
 
-`@NoArgsConstructor`, @RequiredArgsConstructor e @AllArgsConstructor: Essas anotações são usadas para gerar construtores sem argumentos, com argumentos obrigatórios e com todos os argumentos, respectivamente.
+`@NoArgsConstructor @RequiredArgsConstructor @AllArgsConstructor:` Essas anotações são usadas para gerar construtores sem argumentos, com argumentos obrigatórios e com todos os argumentos, respectivamente.
 
 `@Builder:` Esta anotação é usada para implementar o padrão Builder para a construção de objetos.
 

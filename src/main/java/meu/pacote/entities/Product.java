@@ -1,5 +1,8 @@
 package meu.pacote.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,5 +40,15 @@ public class Product implements Serializable {
 	)
 	private final Set<Category> categories = new HashSet<>(); // Set para garantir que a coleção não comece valendo null
 
-	//set garante que nao tera elementos duplicados //final porque nao entra no @AllArgsConstructor
+	@OneToMany(mappedBy = "id.product") //ja que a classe .PK tem o atributo id que ele sim tem o atributo product
+	private final Set<OrderItem> items = new HashSet<>();//set garante que nao tera elementos duplicados //final porque nao entra no @AllArgsConstructor
+
+	public Set<Order> getOrderns(){ //encontra os valores Order dentro do Orderitem e retorna quando é chamado
+		Set<Order> set = new HashSet<>();
+		for(OrderItem x : items){
+			set.add(x.getOrder());
+		}
+		return set;
+	}
 }
+

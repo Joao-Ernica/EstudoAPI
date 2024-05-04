@@ -85,8 +85,7 @@ public class testConfig implements CommandLineRunner { // exeecutar quando o pro
 				.senha("123456")
 				.telefone("988888888")
 				.build();
-
-
+		
 		var o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAGO, u1);
 		var o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.ENTREGUE, u2);
 		var o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.AGUARDANDO_PAGAMENTO, u1);
@@ -94,10 +93,37 @@ public class testConfig implements CommandLineRunner { // exeecutar quando o pro
 		userRepository.saveAll(Arrays.asList(u1, u2)); //percorre a lista e coloca os usuarios no banco de dados
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
 
-		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getValor()); //o OrderItem 1 é do pedido 1, do produto 2 com o preço do produto 1
-		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getValor());
-		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getValor());
-		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getValor());
+		var oi1 = OrderItem //o OrderItem 1 é do pedido 1, do produto 2 com o preço do produto 1
+				.builder()
+				.order(o2)
+				.product(p3)
+				.quantity(2)
+				.price(p3.getValor())
+				.build();
+		var oi2 = OrderItem
+				.builder()
+				.order(o1)
+				.product(p3)
+				.quantity(1)
+				.price(p3.getValor())
+				.build();
+		var oi3 = OrderItem
+				.builder()
+				.order(o3)
+				.product(p5)
+				.quantity(2)
+				.price(p5.getValor())
+				.build();
+		var oi4 = OrderItem
+				.builder()
+				.order(o1)
+				.product(p1)
+				.quantity(2)
+				.price(p1.getValor())
+				.build();
+
+//		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getValor());
+//		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getValor()); //o OrderItem 1 é do pedido 1, do produto 2 com o preço do produto 1
 
 		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 

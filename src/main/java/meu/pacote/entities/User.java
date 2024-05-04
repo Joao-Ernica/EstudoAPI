@@ -27,6 +27,8 @@ public class User implements Serializable {
 	private String nome;
 	private String email;
 	private String telefone;
+
+	@JsonIgnore //evitar que a senha seja exposta no Json
 	private String senha;
 
 	@OneToMany(mappedBy = "client")

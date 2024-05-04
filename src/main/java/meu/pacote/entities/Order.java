@@ -32,7 +32,6 @@ public class Order implements Serializable {
 	@Setter(AccessLevel.NONE)
 	private Integer orderStatus;
 
-
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private User client;

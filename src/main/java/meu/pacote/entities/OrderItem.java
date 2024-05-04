@@ -1,12 +1,14 @@
 package meu.pacote.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
-import meu.pacote.entities.pk.OrderItemPK;
 
+import meu.pacote.entities.pk.OrderItemPK;
 import java.io.Serializable;
 
 @NoArgsConstructor
@@ -24,9 +26,9 @@ public class OrderItem implements Serializable {
 	private OrderItemPK id = new OrderItemPK(); // intanciar a classe intermediaria (pk)
 
 	private Integer quantity;
-
 	private Double price;
 
+	@Builder //coloca o buider para o construtor personalizado
 	public OrderItem(Order order, Product product, Integer quantity, Double price) {
 		super();
 		id.setOrder(order);
@@ -44,6 +46,7 @@ public class OrderItem implements Serializable {
 		id.setOrder(order);
 	}
 
+	@JsonIgnore
 	public Product getProduct() {
 		return id.getProduct();
 	}
