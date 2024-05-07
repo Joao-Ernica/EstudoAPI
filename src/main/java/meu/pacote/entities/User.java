@@ -42,9 +42,5 @@ public class User implements Serializable {
 		return order;
 	}
 
-	public static User of() {
-		return User.builder().build();
-	}
-
 }
 

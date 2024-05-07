@@ -6,7 +6,6 @@ import jakarta.persistence.ManyToOne;
 import lombok.*;
 import meu.pacote.entities.Order;
 import meu.pacote.entities.Product;
-
 import java.io.Serializable;
 
 @Getter

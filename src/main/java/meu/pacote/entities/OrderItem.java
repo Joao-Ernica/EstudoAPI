@@ -5,7 +5,6 @@ import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
-
 import meu.pacote.entities.pk.OrderItemPK;
 import java.io.Serializable;
 

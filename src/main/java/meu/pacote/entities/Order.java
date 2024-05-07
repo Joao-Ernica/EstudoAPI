@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import meu.pacote.entities.enums.OrderStatus;
-
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
