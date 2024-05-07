@@ -24,7 +24,6 @@ public class Order implements Serializable {
 	@EqualsAndHashCode.Include
 	private Long id;
 
-
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 
@@ -39,6 +38,9 @@ public class Order implements Serializable {
 	@Setter(AccessLevel.NONE)
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
+
+	@OneToOne (mappedBy = "order", cascade = CascadeType.ALL) //Cascade é obrigatorio para relação 1 para 1 quando se usa o mesmo Id
+	private Payment payment;
 
 	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
 		super();
@@ -56,6 +58,14 @@ public class Order implements Serializable {
 		if (orderStatus != null) {
 			this.orderStatus = orderStatus.getCode();
 		}
+	}
+
+	public Double getTotal(){ //Json busca metodos get para exibir
+		double soma = 0.0;
+		 for (OrderItem x : items){
+			soma += x.getSubTotal();
+		}
+		 return soma;
 	}
 
 	@Override

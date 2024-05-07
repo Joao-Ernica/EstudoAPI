@@ -1,8 +1,6 @@
 package meu.pacote.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -53,6 +51,10 @@ public class OrderItem implements Serializable {
 
 	public void setProduct(Product product) {
 		id.setProduct(product);
+	}
+
+	public double getSubTotal(){ //Json busca metodos get para exibir, se deseja que um metodo seja exibido tem que usar o get antes
+		return price * quantity;
 	}
 
 

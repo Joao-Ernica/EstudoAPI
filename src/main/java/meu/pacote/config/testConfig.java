@@ -127,6 +127,16 @@ public class testConfig implements CommandLineRunner { // exeecutar quando o pro
 
 		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 
+		var pay1 = Payment
+				.builder()
+				.id(null)
+				.moment(Instant.parse("2019-06-20T21:53:07Z"))
+				.order(o1)
+				.build();
+		o1.setPayment(pay1);
+
+		orderRepository.save(o1); //save é para apenas um item, saveAll geralmente usado em lista
+
 		//salvar os usuarios no banco de dados
 	}
 }
