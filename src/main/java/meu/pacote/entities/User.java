@@ -15,7 +15,8 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true) //excluir todos que nao tenham
 @Builder //gera um padrão de construtor para sua classe.
 @Entity // importa o jakarta.persistence, declara que essa classe é uma entidade
-@Table(name = "tb_user")// indica que a entidade deve ser mapeada para "tb_user", pois ja existe uma tabela "user" mno h2
+@Table(name = "tb_user")
+// indica que a entidade deve ser mapeada para "tb_user", pois ja existe uma tabela "user" mno h2
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L; // serialVersionUID é um identificador único para cada classe serializável
 

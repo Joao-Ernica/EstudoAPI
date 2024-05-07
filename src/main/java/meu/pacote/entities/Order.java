@@ -39,7 +39,8 @@ public class Order implements Serializable {
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> items = new HashSet<>();
 
-	@OneToOne (mappedBy = "order", cascade = CascadeType.ALL) //Cascade é obrigatorio para relação 1 para 1 quando se usa o mesmo Id
+	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+	//Cascade é obrigatorio para relação 1 para 1 quando se usa o mesmo Id
 	private Payment payment;
 
 	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
@@ -55,40 +56,17 @@ public class Order implements Serializable {
 	}
 
 	public void setOrderStatus(OrderStatus orderStatus) {
-		if (orderStatus != null) {
+		if(orderStatus != null) {
 			this.orderStatus = orderStatus.getCode();
 		}
 	}
 
-	public Double getTotal(){ //Json busca metodos get para exibir
+	public Double getTotal() { //Json busca metodos get para exibir
 		double soma = 0.0;
-		 for (OrderItem x : items){
+		for (OrderItem x : items) {
 			soma += x.getSubTotal();
 		}
-		 return soma;
+		return soma;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Order other = (Order) obj;
-		if (id == null) {
-			return other.id == null;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
 }
