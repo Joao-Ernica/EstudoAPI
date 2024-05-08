@@ -3,13 +3,11 @@ package meu.pacote.resources;
 import meu.pacote.entities.User;
 import meu.pacote.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -31,13 +29,30 @@ public class UserResource {
 
 	@GetMapping("{id}")// quando colocar /users/1 colocara a pessoa com id 1
 	public User findById(@PathVariable Long id) {
-		try {
 			return userService.findById(id);
-		}catch (NoSuchElementException e){
-			return
-					null;
-
 		}
+
+	@PostMapping // post serve para inserir dados //diferente do get que serve para pegar os dados
+	public ResponseEntity<User> insert(@RequestBody User obj) { //@RequestBody converter o corpo de uma requisição HTTP em um objeto Java.
+		obj = userService.insert(obj);
+		URI uri = ServletUriComponentsBuilder //constroi uma URI
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(obj.getId())
+				.toUri();
+		return ResponseEntity.created(uri).body(obj);// criado e um código de status HTTP 201, usado para indicar o sucesso na criação
 	}
 
+	@DeleteMapping("{id}")
+	public ResponseEntity<Void> deleteUser(@PathVariable long id) { //Void porque nao vai retornar nada
+		userService.delete(id);
+		return ResponseEntity.noContent().build(); //codigo HTTP que nao tem resposta é o 204
+
+	}
+
+	@PutMapping("{id}") //usado para atualizar um recurso existente na web
+	public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User obj) {
+		obj = userService.update(id, obj);
+		return ResponseEntity.ok().body(obj);
+	}
 }

@@ -10,8 +10,8 @@
 
 
     <properties> <!-- Define propriedades do projeto -->
-        <maven.compiler.source>1.8.0_301</maven.compiler.source> <!-- Define a versão do Java usada para compilar o código-fonte -->
-        <maven.compiler.target>1.8.0_301</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source> <!-- Define a versão do Java usada para compilar o código-fonte -->
+        <maven.compiler.target>11</maven.compiler.target>  <!-- 1.8.0_301 versão originalmente usada  -->
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- Define a codificação de caracteres usada para ler e gravar arquivos de origem -->
     </properties>
