@@ -2,8 +2,11 @@ package meu.pacote.services;
 
 import meu.pacote.entities.User;
 import meu.pacote.repositories.UserRepository;
+import meu.pacote.services.exceptions.DatabaseException;
 import meu.pacote.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +31,15 @@ public class UserService {
 	}
 
 	public void delete(Long id) {
+		// e.printStackTrace(); usar para localizar o erro
+		try {
 			repository.deleteById(id); //tras o objeto do banco de dados
+		}catch(EmptyResultDataAccessException e){ // deletar um recurso que não existe
+			throw new ResourceNotFoundException(id);
+		}catch (DataIntegrityViolationException e){ //violação de integridade do banco de dados
+			throw new DatabaseException(e.getMessage());
+
+		}
 	}
 
 	public User update(long id, User obj){ //obter os dados que serão atualizados

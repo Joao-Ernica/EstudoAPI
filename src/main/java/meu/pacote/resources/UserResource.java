@@ -37,7 +37,7 @@ public class UserResource {
 		obj = userService.insert(obj);
 		URI uri = ServletUriComponentsBuilder //constroi uma URI
 				.fromCurrentRequest()
-				.path("/{id}")
+				.path("{id}")
 				.buildAndExpand(obj.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(obj);// criado e um código de status HTTP 201, usado para indicar o sucesso na criação
