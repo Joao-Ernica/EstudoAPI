@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import java.time.Instant;
 
 @ControllerAdvice // componente de tratamento de exceções global
@@ -22,7 +21,7 @@ public class ResourceExceptionHandler {
 	}
 
 	@ExceptionHandler(DatabaseException.class)
-	public ResponseEntity<StandardError>  Database( DatabaseException exeception, HttpServletRequest request ){
+	public ResponseEntity<StandardError> Database( DatabaseException exeception, HttpServletRequest request ){
 		String error = "Data base error";
 		HttpStatus status = HttpStatus.BAD_REQUEST;// retorna o erro 400 indicando que foi um erro da solicitação do client
 		StandardError standardError = new StandardError(Instant.now(),status.value(),error, exeception.getMessage(), request.getRequestURI());

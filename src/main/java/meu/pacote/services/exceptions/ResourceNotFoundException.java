@@ -5,6 +5,5 @@ public class ResourceNotFoundException extends RuntimeException { //"extends Run
 
 	public ResourceNotFoundException(Object id) { //passar o id do objeto não encontrado
 		super("Resource not found. Id" + id); // chamar o construtor da extends RuntimeException
-
 	}
 }

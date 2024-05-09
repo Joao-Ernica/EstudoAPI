@@ -1,5 +1,6 @@
 package meu.pacote.services;
 
+import jakarta.persistence.EntityNotFoundException;
 import meu.pacote.entities.User;
 import meu.pacote.repositories.UserRepository;
 import meu.pacote.services.exceptions.DatabaseException;
@@ -34,18 +35,22 @@ public class UserService {
 		// e.printStackTrace(); usar para localizar o erro
 		try {
 			repository.deleteById(id); //tras o objeto do banco de dados
-		}catch(EmptyResultDataAccessException e){ // deletar um recurso que não existe
+		} catch (EmptyResultDataAccessException e) { // deletar um recurso que não existe
 			throw new ResourceNotFoundException(id);
-		}catch (DataIntegrityViolationException e){ //violação de integridade do banco de dados
+		} catch (DataIntegrityViolationException e) { //violação de integridade do banco de dados
 			throw new DatabaseException(e.getMessage());
 
 		}
 	}
 
-	public User update(long id, User obj){ //obter os dados que serão atualizados
-		User entity = repository.getReferenceById(id); //prepara o objeto e depois efetuar uma operação com o bando de dados
-		updateData(entity, obj);
-		return repository.save(entity);
+	public User update(long id, User obj) { //obter os dados que serão atualizados
+		try {
+			User entity = repository.getReferenceById(id); //prepara o objeto e depois efetuar uma operação com o bando de dados
+			updateData(entity, obj);
+			return repository.save(entity);
+		} catch (EntityNotFoundException e) { // quando a entidade acessada não existe
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void updateData(User entity, User obj) { //atualiza os dados da entity com os novos dados fornecidos pelo obj

@@ -3,7 +3,6 @@ package meu.pacote.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -21,12 +20,10 @@ public class Payment implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private Instant moment;
 
 	@JsonIgnore
 	@OneToOne
 	@MapsId // usar o mesmo id da outra entidade que tem relação 1 para 1
 	private Order order; //relação bidirecional OneToOne com order
-
 }

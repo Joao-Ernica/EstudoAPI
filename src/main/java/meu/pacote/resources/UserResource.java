@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.net.URI;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
 // Significa que essa classe vai ser responsável por pegar as informações que vêm de uma solicitação da web
@@ -47,7 +45,6 @@ public class UserResource {
 	public ResponseEntity<Void> deleteUser(@PathVariable long id) { //Void porque nao vai retornar nada
 		userService.delete(id);
 		return ResponseEntity.noContent().build(); //codigo HTTP que nao tem resposta é o 204
-
 	}
 
 	@PutMapping("{id}") //usado para atualizar um recurso existente na web
