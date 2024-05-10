@@ -7,8 +7,9 @@
 ```
 <properties> 
     <!--Define propriedades do projeto-->
-    <maven.compiler.source>"1.8.0_301</maven.compiler.source> <!-- Define a versão do Java usada para compilar o código-fonte -->
-    <maven.compiler.target>"1.8.0_301</maven.compiler.target>
+    <maven.compiler.source>"18</maven.compiler.source> <!-- Define a versão do Java usada para compilar o código-fonte -->
+    <maven.compiler.target>"18</maven.compiler.target>
+    <java.version>18</java.version>
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- Define a codificação de caracteres usada para ler e gravar arquivos de origem -->
     </properties>
 ```
